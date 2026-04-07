@@ -1,12 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import * as pdfjsLib from "pdfjs-dist";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
 
 export function PdfCoverPreview({
   pdfUrl,
@@ -23,10 +17,16 @@ export function PdfCoverPreview({
 
     async function renderFirstPage() {
       try {
+        const pdfjsLib = await import("pdfjs-dist");
+        pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+          "pdfjs-dist/build/pdf.worker.min.mjs",
+          import.meta.url
+        ).toString();
+
         setStatus("loading");
         const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
         const page = await pdf.getPage(1);
-        const viewport = page.getViewport({ scale: 1.55 });
+        const viewport = page.getViewport({ scale: 1.45 });
         const canvas = canvasRef.current;
         if (!canvas || cancelled) return;
 
@@ -59,6 +59,7 @@ export function PdfCoverPreview({
   return (
     <div className="relative h-60 w-full overflow-hidden bg-[var(--surface-soft)] sm:h-64">
       <canvas ref={canvasRef} className="h-full w-full object-cover" />
+
       {status !== "ready" ? (
         <div className="absolute inset-0 flex items-center justify-center bg-[linear-gradient(180deg,rgba(255,253,249,0.96),rgba(238,243,246,0.9))]">
           <div className="max-w-xs text-center">

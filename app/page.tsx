@@ -96,11 +96,25 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 2xl:grid-cols-3">
-            {articles.slice(0, 6).map((article) => (
-              <ArticleCard key={article.id} article={article} variant="soft" />
-            ))}
-          </div>
+          {articles.length > 0 ? (
+            <div className="grid gap-5 md:grid-cols-2 2xl:grid-cols-3">
+              {articles.slice(0, 6).map((article) => (
+                <ArticleCard key={article.id} article={article} variant="soft" />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-[1.8rem] border border-[var(--border)] bg-white/90 p-8 text-center shadow-[var(--shadow-soft)]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
+                Collection vide
+              </p>
+              <p className="mt-3 font-serif text-3xl text-[var(--text-strong)]">
+                Aucun article n&apos;est visible pour le moment.
+              </p>
+              <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
+                Vérifie Supabase, le diagnostic, ou la publication la plus récente.
+              </p>
+            </div>
+          )}
         </section>
       </section>
     </main>
