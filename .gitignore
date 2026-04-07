@@ -47,3 +47,4 @@ test_env.py
 #sql
 supabase_setup.sql
 
+__pycache__
