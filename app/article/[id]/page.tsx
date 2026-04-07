@@ -4,6 +4,8 @@ import { ArticleCard } from "@/components/article-card";
 import { PdfViewer } from "@/components/pdf-viewer";
 import { getArticleByIdOrSlug, getArticles } from "@/lib/articles";
 
+export const dynamic = "force-dynamic";
+
 export default async function ArticlePage({
   params,
 }: {

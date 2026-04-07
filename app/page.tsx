@@ -3,6 +3,8 @@ import { ArticleCard } from "@/components/article-card";
 import { ArticleExplorer } from "@/components/article-explorer";
 import { getArticles } from "@/lib/articles";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const articles = await getArticles();
   const latestArticle = articles[0] ?? null;

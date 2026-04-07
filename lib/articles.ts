@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import type { Article } from "@/lib/types";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import { resolvePdfUrl } from "@/lib/storage";
@@ -18,6 +19,8 @@ function normalizeArticle(article: Partial<Article>): Article {
 }
 
 export async function getArticles(): Promise<Article[]> {
+  noStore();
+
   if (!isSupabaseConfigured || !supabase) {
     return [];
   }
@@ -35,6 +38,8 @@ export async function getArticles(): Promise<Article[]> {
 }
 
 export async function getArticleById(id: string): Promise<Article | null> {
+  noStore();
+
   const normalizedId = String(id ?? "").trim();
   if (!normalizedId || !isSupabaseConfigured || !supabase) {
     return null;
