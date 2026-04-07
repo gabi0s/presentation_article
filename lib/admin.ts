@@ -1,16 +1,10 @@
+"use server";
+
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase";
 import { PDF_BUCKET } from "@/lib/storage";
 
-export type CreateArticleState = {
-  status: "idle" | "success" | "error";
-  message: string;
-};
-
-export async function createArticle(
-  _prevState: CreateArticleState,
-  formData: FormData
-): Promise<CreateArticleState> {
+export async function createArticle(formData: FormData): Promise<void> {
   const title = String(formData.get("title") ?? "").trim();
   const summary = String(formData.get("summary") ?? "").trim();
   const author = String(formData.get("author") ?? "").trim();
@@ -20,44 +14,35 @@ export async function createArticle(
   const pdfFile = formData.get("pdf_file");
 
   if (!supabaseAdmin) {
-    return {
-      status: "error",
-      message:
-        "La clé SUPABASE_SERVICE_ROLE_KEY manque dans l'environnement. Ajoute-la pour activer l'administration.",
-    };
+    throw new Error(
+      "La variable SUPABASE_SERVICE_ROLE_KEY est manquante pour l'administration."
+    );
   }
 
-  if (!title || !summary || !author || !publishedDate || !coverImageUrl) {
-    return {
-      status: "error",
-      message: "Tous les champs sauf les mots-clés sont obligatoires.",
-    };
+  if (!title || !summary || !author || !publishedDate) {
+    throw new Error("Les champs titre, resume, auteur et date sont obligatoires.");
   }
 
   if (!(pdfFile instanceof File) || pdfFile.size === 0) {
-    return {
-      status: "error",
-      message: "Merci de choisir un fichier PDF.",
-    };
+    throw new Error("Merci de choisir un fichier PDF.");
   }
 
-  const bucket = PDF_BUCKET;
   const fileName = `${crypto.randomUUID()}-${pdfFile.name}`.replaceAll(" ", "-");
   const uploadBuffer = Buffer.from(await pdfFile.arrayBuffer());
 
   const uploadResult = await supabaseAdmin.storage
-    .from(bucket)
+    .from(PDF_BUCKET)
     .upload(fileName, uploadBuffer, {
       contentType: pdfFile.type || "application/pdf",
       upsert: false,
     });
 
   if (uploadResult.error) {
-    return { status: "error", message: uploadResult.error.message };
+    throw new Error(uploadResult.error.message);
   }
 
   const { data: publicUrlData } = supabaseAdmin.storage
-    .from(bucket)
+    .from(PDF_BUCKET)
     .getPublicUrl(fileName);
 
   const keywords = keywordsRaw
@@ -76,14 +61,9 @@ export async function createArticle(
   });
 
   if (insertResult.error) {
-    return { status: "error", message: insertResult.error.message };
+    throw new Error(insertResult.error.message);
   }
 
   revalidatePath("/");
   revalidatePath("/admin");
-
-  return {
-    status: "success",
-    message: "Article ajouté avec succès.",
-  };
 }
