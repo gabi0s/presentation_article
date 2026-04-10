@@ -29,21 +29,21 @@ export default async function ArticlePage({
     .slice(0, 3);
 
   return (
-    <main className="min-h-screen bg-[var(--page-bg)]">
+    <main className="min-h-screen">
       <section className="mx-auto w-full max-w-[1680px] px-4 py-6 sm:px-6 sm:py-8 xl:px-8 xl:py-10">
         <div className="flex flex-col gap-6">
           <Link
             href="/"
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border)] bg-white/90 px-4 py-2 text-sm text-[var(--text-muted)] transition hover:text-[var(--text-strong)]"
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-[var(--line)] bg-[rgba(255,250,241,0.82)] px-4 py-2 text-sm uppercase tracking-[0.14em] text-[var(--ink-500)] transition hover:text-[var(--ink-950)]"
           >
             Retour a la collection
           </Link>
 
           <div className="grid gap-6 2xl:grid-cols-[0.95fr_1.05fr]">
             <article className="space-y-6">
-              <div className="rounded-[2rem] border border-[var(--border)] bg-white/95 p-6 shadow-[var(--shadow-soft)] sm:p-8 xl:p-10">
-                <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--text-muted)]">
-                  <span className="rounded-full bg-[var(--accent-soft)] px-2.5 py-1 font-medium text-[var(--accent)]">
+              <div className="dark-panel rounded-[2.4rem] border border-white/8 p-6 text-white shadow-[var(--shadow-strong)] sm:p-8 xl:p-10">
+                <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/60">
+                  <span className="rounded-full bg-white/10 px-2.5 py-1 font-medium text-white">
                     PDF
                   </span>
                   <span>{article.author}</span>
@@ -52,10 +52,10 @@ export default async function ArticlePage({
                   </time>
                 </div>
 
-                <h1 className="mt-5 max-w-4xl font-serif text-4xl leading-[0.98] text-[var(--text-strong)] sm:text-5xl xl:text-6xl">
+                <h1 className="mt-5 max-w-4xl font-serif text-4xl leading-[0.95] text-white sm:text-5xl xl:text-6xl">
                   {article.title}
                 </h1>
-                <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--text-muted)] sm:text-lg">
+                <p className="mt-5 max-w-3xl text-base leading-8 text-white/72 sm:text-lg">
                   {article.summary}
                 </p>
 
@@ -65,20 +65,20 @@ export default async function ArticlePage({
                       href={article.pdf_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white transition hover:opacity-92"
+                      className="inline-flex items-center justify-center rounded-full bg-[var(--surface-strong)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--ink-950)] transition hover:bg-white"
                     >
                       Télécharger le PDF
                     </a>
                   ) : null}
                   <Link
                     href="/"
-                    className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface-accent)] px-5 py-3 text-sm font-medium text-[var(--accent)] transition hover:bg-white"
+                    className="inline-flex items-center justify-center rounded-full border border-white/14 bg-white/8 px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-white/12"
                   >
                     Revenir aux articles
                   </Link>
                 </div>
 
-                <dl className="mt-8 grid gap-4 border-t border-[var(--border)] pt-6 text-sm sm:grid-cols-2">
+                <dl className="mt-8 grid gap-4 border-t border-white/10 pt-6 text-sm sm:grid-cols-2">
                   <InfoItem label="Auteur" value={article.author} />
                   <InfoItem
                     label="Date"
@@ -95,14 +95,14 @@ export default async function ArticlePage({
                 </dl>
               </div>
 
-              <section className="rounded-[2rem] border border-[var(--border)] bg-white/95 p-6 shadow-[var(--shadow-soft)] sm:p-8 xl:p-10">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
+              <section className="glass-panel rounded-[2rem] border border-[var(--line)] p-6 shadow-[var(--shadow-soft)] sm:p-8 xl:p-10">
+                <p className="eyebrow text-[var(--accent-deep)]">
                   Note de lecture
                 </p>
-                <h2 className="mt-3 font-serif text-3xl text-[var(--text-strong)]">
+                <h2 className="mt-3 font-serif text-3xl text-[var(--ink-950)]">
                   Prévisualisation texte
                 </h2>
-                <p className="mt-5 max-w-4xl whitespace-pre-line text-sm leading-8 text-[var(--text-muted)] sm:text-base">
+                <p className="mt-5 max-w-4xl whitespace-pre-line text-sm leading-8 text-[var(--ink-500)] sm:text-base">
                   {article.content ??
                     article.summary ??
                     "Aperçu non disponible pour cet article."}
@@ -115,13 +115,13 @@ export default async function ArticlePage({
                 <PdfViewer pdfUrl={article.pdf_url} />
               ) : null}
 
-              <section className="rounded-[2rem] border border-[var(--border)] bg-white/95 p-6 shadow-[var(--shadow-soft)] sm:p-8">
+              <section className="glass-panel rounded-[2rem] border border-[var(--line)] p-6 shadow-[var(--shadow-soft)] sm:p-8">
                 <div className="flex items-end justify-between gap-4">
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
+                    <p className="eyebrow text-[var(--accent-deep)]">
                       Suite de lecture
                     </p>
-                    <h2 className="mt-3 font-serif text-3xl text-[var(--text-strong)]">
+                    <h2 className="mt-3 font-serif text-3xl text-[var(--ink-950)]">
                       Articles similaires
                     </h2>
                   </div>
@@ -133,7 +133,7 @@ export default async function ArticlePage({
                       <ArticleCard key={item.id} article={item} variant="compact" />
                     ))
                   ) : (
-                    <p className="text-sm leading-6 text-[var(--text-muted)]">
+                    <p className="text-sm leading-6 text-[var(--ink-500)]">
                       Aucun article similaire pour le moment.
                     </p>
                   )}
@@ -149,11 +149,11 @@ export default async function ArticlePage({
 
 function InfoItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.4rem] border border-[var(--border)] bg-[var(--surface-soft)] p-4">
-      <dt className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]">
+    <div className="rounded-[1.4rem] border border-white/10 bg-white/6 p-4">
+      <dt className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/54">
         {label}
       </dt>
-      <dd className="mt-2 text-sm font-medium leading-6 text-[var(--text-strong)]">
+      <dd className="mt-2 text-sm font-medium leading-6 text-white">
         {value}
       </dd>
     </div>

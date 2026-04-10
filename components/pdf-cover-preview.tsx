@@ -57,19 +57,19 @@ export function PdfCoverPreview({
   }, [pdfUrl]);
 
   return (
-    <div className="relative h-60 w-full overflow-hidden bg-[var(--surface-soft)] sm:h-64">
+    <div className="relative h-64 w-full overflow-hidden bg-[rgba(20,17,15,0.08)] sm:h-72">
       <canvas ref={canvasRef} className="h-full w-full object-cover" />
 
       {status !== "ready" ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-[linear-gradient(180deg,rgba(255,253,249,0.96),rgba(238,243,246,0.9))]">
+        <div className="absolute inset-0 flex items-center justify-center bg-[linear-gradient(180deg,rgba(255,250,241,0.96),rgba(233,224,209,0.92))]">
           <div className="max-w-xs text-center">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--accent-deep)]">
               PDF
             </p>
-            <p className="mt-3 font-serif text-2xl leading-tight text-[var(--text-strong)]">
+            <p className="mt-3 font-serif text-2xl leading-tight text-[var(--ink-950)]">
               {title}
             </p>
-            <p className="mt-2 text-xs text-[var(--text-muted)]">
+            <p className="mt-2 text-xs text-[var(--ink-500)]">
               {status === "loading"
                 ? "Chargement de l'aperçu"
                 : "Aperçu indisponible"}

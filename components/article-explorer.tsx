@@ -64,23 +64,22 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
   return (
     <section
       aria-labelledby="article-explorer-title"
-      className="rounded-[2rem] border border-[var(--border)] bg-white/90 p-4 shadow-[var(--shadow-soft)] sm:p-6 xl:p-8"
+      className="glass-panel rounded-[2.2rem] border border-[var(--line)] p-4 shadow-[var(--shadow-soft)] sm:p-6 xl:p-8"
     >
-      <div className="grid gap-5 border-b border-[var(--border)] pb-6 xl:grid-cols-[1.1fr_0.9fr] xl:items-end">
+      <div className="grid gap-5 border-b border-[var(--line)] pb-6 xl:grid-cols-[1.1fr_0.9fr] xl:items-end">
         <div className="space-y-3">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--accent)]">
+          <p className="eyebrow text-[var(--accent-deep)]">
             Outils de lecture
           </p>
           <h2
             id="article-explorer-title"
-            className="font-serif text-3xl leading-tight text-[var(--text-strong)] sm:text-4xl"
+            className="font-serif text-3xl leading-tight text-[var(--ink-950)] sm:text-4xl"
           >
-            Retrouvez un article par titre, auteur ou date.
+            Retrouve un article par titre, auteur ou date.
           </h2>
-          <p className="max-w-2xl text-sm leading-6 text-[var(--text-muted)]">
-            La recherche filtre en direct et la bascule de vue permet de passer
-            d&apos;une lecture editoriale a une lecture utilitaire sans changer
-            de page.
+          <p className="max-w-2xl text-sm leading-7 text-[var(--ink-500)]">
+            Le module reste utilitaire, mais avec une presence visuelle plus premium et mieux
+            integree au reste du site.
           </p>
         </div>
 
@@ -92,21 +91,21 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
       </div>
 
       <div className="mt-6 grid gap-4 xl:grid-cols-[1.45fr_0.7fr_0.7fr_auto]">
-        <label className="flex items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3">
+        <label className="flex items-center gap-3 rounded-2xl border border-[var(--line)] bg-[rgba(255,255,255,0.62)] px-4 py-3">
           <SearchIcon />
           <span className="sr-only">Recherche d&apos;articles</span>
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Rechercher par titre, resume ou mot-cle"
-            className="w-full bg-transparent text-sm outline-none placeholder:text-[var(--text-muted)]"
+            className="w-full bg-transparent text-sm outline-none placeholder:text-[var(--ink-500)]"
           />
         </label>
 
         <select
           value={author}
           onChange={(event) => setAuthor(event.target.value)}
-          className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm outline-none"
+          className="rounded-2xl border border-[var(--line)] bg-[rgba(255,255,255,0.62)] px-4 py-3 text-sm outline-none"
           aria-label="Filtrer par auteur"
         >
           <option value="all">Tous les auteurs</option>
@@ -117,21 +116,21 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
         <select
           value={sort}
           onChange={(event) => setSort(event.target.value as "recent" | "oldest")}
-          className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm outline-none"
+          className="rounded-2xl border border-[var(--line)] bg-[rgba(255,255,255,0.62)] px-4 py-3 text-sm outline-none"
           aria-label="Trier par date"
         >
           <option value="recent">Plus recents d&apos;abord</option>
           <option value="oldest">Plus anciens d&apos;abord</option>
         </select>
 
-        <div className="flex items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] p-1">
+        <div className="flex items-center gap-2 rounded-2xl border border-[var(--line)] bg-[rgba(20,17,15,0.05)] p-1">
           <button
             type="button"
             onClick={() => setViewMode("grid")}
             className={`rounded-xl px-3 py-2 text-sm transition ${
               viewMode === "grid"
-                ? "bg-white text-[var(--accent)] shadow-sm"
-                : "text-[var(--text-muted)]"
+                ? "bg-white text-[var(--ink-950)] shadow-sm"
+                : "text-[var(--ink-500)]"
             }`}
             aria-pressed={viewMode === "grid"}
           >
@@ -142,8 +141,8 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
             onClick={() => setViewMode("list")}
             className={`rounded-xl px-3 py-2 text-sm transition ${
               viewMode === "list"
-                ? "bg-white text-[var(--accent)] shadow-sm"
-                : "text-[var(--text-muted)]"
+                ? "bg-white text-[var(--ink-950)] shadow-sm"
+                : "text-[var(--ink-500)]"
             }`}
             aria-pressed={viewMode === "list"}
           >
@@ -152,14 +151,14 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-col gap-3 text-sm text-[var(--text-muted)] sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-5 flex flex-col gap-3 text-sm text-[var(--ink-500)] sm:flex-row sm:items-center sm:justify-between">
         <p>
           {filteredArticles.length} article(s) correspondent a la recherche en
           cours.
         </p>
         <Link
           href="#collection"
-          className="rounded-full border border-transparent px-3 py-1.5 transition hover:border-[var(--border)] hover:text-[var(--text-strong)]"
+          className="rounded-full border border-transparent px-3 py-1.5 transition hover:border-[var(--line)] hover:text-[var(--ink-950)]"
         >
           Retour a la selection
         </Link>
@@ -178,12 +177,12 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
           ) : (
             <article
               key={article.id}
-              className="rounded-[1.6rem] border border-[var(--border)] bg-[var(--surface)] p-5 transition hover:shadow-[var(--shadow-soft)]"
+              className="rounded-[1.8rem] border border-[var(--line)] bg-[rgba(255,250,241,0.82)] p-5 transition hover:shadow-[var(--shadow-soft)]"
             >
               <div className="flex flex-col gap-4 xl:flex-row xl:items-center">
                 <div className="min-w-0 flex-1 space-y-3">
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--text-muted)]">
-                    <span className="rounded-full bg-[var(--accent-soft)] px-2.5 py-1 font-medium text-[var(--accent)]">
+                  <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] text-[var(--ink-500)]">
+                    <span className="rounded-full bg-[var(--accent-soft)] px-2.5 py-1 font-medium text-[var(--accent-deep)]">
                       PDF
                     </span>
                     <span>{article.author}</span>
@@ -192,18 +191,18 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
                     </time>
                   </div>
                   <Link href={`/article/${encodeURIComponent(article.id || article.title)}`}>
-                    <h3 className="font-serif text-3xl leading-tight text-[var(--text-strong)]">
+                    <h3 className="font-serif text-3xl leading-tight text-[var(--ink-950)]">
                       {article.title}
                     </h3>
                   </Link>
-                  <p className="max-w-3xl text-sm leading-6 text-[var(--text-muted)]">
+                  <p className="max-w-3xl text-sm leading-7 text-[var(--ink-500)]">
                     {article.summary}
                   </p>
                 </div>
 
                 <Link
                   href={`/article/${encodeURIComponent(article.id || article.title)}`}
-                  className="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--accent)] px-4 py-2.5 text-sm font-medium text-white transition hover:opacity-92"
+                  className="inline-flex shrink-0 items-center justify-center rounded-full bg-[var(--ink-950)] px-4 py-2.5 text-sm font-medium uppercase tracking-[0.14em] text-white transition hover:bg-[var(--accent-deep)]"
                 >
                   Ouvrir
                 </Link>
@@ -218,11 +217,11 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
 
 function OverviewCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.4rem] border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--text-muted)]">
+    <div className="rounded-[1.4rem] border border-[var(--line)] bg-[rgba(255,255,255,0.5)] px-4 py-3">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--ink-500)]">
         {label}
       </p>
-      <p className="mt-2 font-serif text-3xl leading-none text-[var(--text-strong)]">
+      <p className="mt-2 font-serif text-3xl leading-none text-[var(--ink-950)]">
         {value}
       </p>
     </div>

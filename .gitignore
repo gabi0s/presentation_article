@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 #python
-#upload_pdfs_to_supabase.py
+upload_pdfs_to_supabase.py
 test_env.py
 
 #sql
