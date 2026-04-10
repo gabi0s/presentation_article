@@ -67,7 +67,7 @@ export default async function ArticlePage({
                       rel="noreferrer"
                       className="inline-flex items-center justify-center rounded-full bg-[var(--surface-strong)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--ink-950)] transition hover:bg-white"
                     >
-                      Télécharger le PDF
+                      Telecharger le PDF
                     </a>
                   ) : null}
                   <Link
@@ -100,12 +100,12 @@ export default async function ArticlePage({
                   Note de lecture
                 </p>
                 <h2 className="mt-3 font-serif text-3xl text-[var(--ink-950)]">
-                  Prévisualisation texte
+                  Previsualisation texte
                 </h2>
                 <p className="mt-5 max-w-4xl whitespace-pre-line text-sm leading-8 text-[var(--ink-500)] sm:text-base">
                   {article.content ??
                     article.summary ??
-                    "Aperçu non disponible pour cet article."}
+                    "Apercu non disponible pour cet article."}
                 </p>
               </section>
             </article>
@@ -159,3 +159,4 @@ function InfoItem({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
+

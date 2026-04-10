@@ -56,7 +56,7 @@ export function ArticleCard({
               {article.keywords.slice(0, 3).map((keyword) => (
                 <span
                   key={keyword}
-                  className="rounded-full border border-[var(--line)] bg-[var(--accent-soft)] px-2.5 py-1 text-[11px] uppercase tracking-[0.16em] text-[var(--accent-deep)]"
+                  className="rounded-full border border-[var(--line)] bg-[rgba(255,255,255,0.72)] px-2.5 py-1 text-[11px] uppercase tracking-[0.16em] text-[var(--ink-500)]"
                 >
                   {keyword}
                 </span>

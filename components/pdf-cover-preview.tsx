@@ -72,7 +72,7 @@ export function PdfCoverPreview({
             <p className="mt-2 text-xs text-[var(--ink-500)]">
               {status === "loading"
                 ? "Chargement de l'aperçu"
-                : "Aperçu indisponible"}
+                : "Apercu indisponible"}
             </p>
           </div>
         </div>
@@ -80,3 +80,4 @@ export function PdfCoverPreview({
     </div>
   );
 }
+

@@ -6,7 +6,7 @@ export function PdfViewer({ pdfUrl }: { pdfUrl: string }) {
           <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-[var(--accent-deep)]">
             Lecture
           </p>
-          <p className="mt-1 text-sm text-[var(--text-muted)]">Aperçu du PDF</p>
+          <p className="mt-1 text-sm text-[var(--text-muted)]">Apercu du PDF</p>
         </div>
         <a
           href={pdfUrl}
@@ -25,3 +25,4 @@ export function PdfViewer({ pdfUrl }: { pdfUrl: string }) {
     </div>
   );
 }
+

@@ -109,8 +109,11 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
           aria-label="Filtrer par auteur"
         >
           <option value="all">Tous les auteurs</option>
-          <option value="Baptiste">Baptiste</option>
-          <option value="Clément">Clément</option>
+          {authors.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
         </select>
 
         <select
@@ -167,7 +170,7 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
       <div
         className={`mt-6 ${
           viewMode === "grid"
-            ? "grid gap-5 md:grid-cols-2 2xl:grid-cols-3"
+            ? "grid gap-5 lg:grid-cols-3"
             : "grid gap-4"
         }`}
       >
@@ -182,7 +185,7 @@ export function ArticleExplorer({ articles }: { articles: Article[] }) {
               <div className="flex flex-col gap-4 xl:flex-row xl:items-center">
                 <div className="min-w-0 flex-1 space-y-3">
                   <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] text-[var(--ink-500)]">
-                    <span className="rounded-full bg-[var(--accent-soft)] px-2.5 py-1 font-medium text-[var(--accent-deep)]">
+                    <span className="rounded-full bg-[rgba(255,255,255,0.72)] px-2.5 py-1 font-medium text-[var(--ink-500)]">
                       PDF
                     </span>
                     <span>{article.author}</span>
@@ -227,3 +230,4 @@ function OverviewCard({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
+
